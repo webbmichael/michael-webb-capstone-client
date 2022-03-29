@@ -1,0 +1,20 @@
+@font-face {
+  font-family: "lexend-light";
+  src: url(../assets/fonts/LexendDeca-Light.ttf);
+}
+@font-face {
+  font-family: "lexend-medium";
+  src: url(../assets/fonts/LexendDeca-Medium.ttf);
+}
+$medium: "lexend-medium";
+$light: "lexend-light";
+
+@mixin medium {
+  font-size: 4.5rem;
+  font-weight: 500;
+}
+
+@mixin light {
+  font-size: 2rem;
+  font-weight: 300;
+}

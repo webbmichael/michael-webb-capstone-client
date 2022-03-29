@@ -1,0 +1,39 @@
+// flex
+@mixin flex($justify, $align, $direction: row) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+  flex-direction: $direction;
+}
+
+@mixin height-width($height, $width) {
+  height: $height;
+  width: $width;
+}
+
+@mixin max-height-width($height, $width) {
+  max-height: $height;
+  max-width: $width;
+}
+
+@mixin wrapper-mobile {
+  margin: 0 16px; //16px
+}
+
+@mixin wrapper-tablet {
+  margin: 0 32px; //32px
+}
+
+@mixin wrapper-desktop {
+  margin: 0 auto;
+  max-width: 1280px; //1280 px
+}
+@mixin storyFlex {
+  @include wrapper-tablet;
+  display: flex;
+  flex-direction: row;
+}
+@mixin left {
+  width: 60%;
+  @include flex(center, center, column);
+}

@@ -1,0 +1,30 @@
+body {
+  background-color: black;
+}
+.canvasContainer {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  left: 20%;
+}
+canvas {
+  z-index: 1;
+
+  width: 150%;
+  height: 120vh;
+  // transform: rotate(-20deg);
+}
+.hello {
+  background-color: red;
+  background: none;
+  display: flex;
+  width: 50%;
+}
+mark.grey {
+  background: none;
+  color: rgba(255, 255, 255, 0.67);
+}
+mark.white {
+  background: none;
+  color: rgba(black, 0.5);
+}

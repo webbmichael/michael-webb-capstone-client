@@ -1,0 +1,18 @@
+@use "../../styles/mixins" as *;
+@use "../../styles/fonts" as *;
+.mars {
+  @include storyFlex;
+
+  &__left {
+    @include left;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+  &__asteroid {
+    @include light;
+    font-size: 3rem;
+    font-weight: bold;
+    color: white;
+    justify-content: flex-start;
+  }
+}
