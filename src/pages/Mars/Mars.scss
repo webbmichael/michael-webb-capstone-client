@@ -1,5 +1,6 @@
 @use "../../styles/mixins" as *;
 @use "../../styles/fonts" as *;
+@use "../../styles/variables" as *;
 .mars {
   @include storyFlex;
 
@@ -15,4 +16,25 @@
     color: white;
     justify-content: flex-start;
   }
+  &__number {
+    @include light;
+    color: white;
+    font-size: 2rem;
+  }
+  &__selectDataFor {
+    @include light;
+    font-size: 1.5rem;
+  }
+  &__selectBox {
+    @include light;
+    font-size: 1.5rem;
+    height: 3rem;
+    background: black;
+    border: solid $second-white 0.125rem;
+    padding: 6px;
+    border-radius: 0.625rem;
+  }
+}
+select option {
+  background-color: none;
 }
