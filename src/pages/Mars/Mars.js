@@ -8,16 +8,19 @@ import { useState, useEffect ,useRef} from "react";
 import axios from 'axios';
 import Button from '../../Component/Button/Button';
 import BarChart from '../../Component/Chart/Chart';
-export default function Mars() {
+export default function Mars({onAsteroidClick}) {
   const [asteroidData, setAsteroidData] = useState(null);
   const [hazardous, setHazardous] = useState(null);
   const [chartData, setChartData] = useState(null);
   const [noOfAsteroids, setNoOfAsteroids] = useState(null);
+  const[neoID,setNeoID]= useState(null);
   const chartRef = useRef();
+
+ 
 
   const asteroidGet = async () => {
     try {
-      const response = await axios.get(GET_ASTEROID('2015-09-07','2015-09-08'));
+      const response = await axios.get(GET_ASTEROID('2015-09-15','2015-09-18'));
       console.log(response.data)
       setAsteroidData(response.data)
     } catch(error){
@@ -28,32 +31,40 @@ export default function Mars() {
     console.log(e.target.value)
     setHazardous(e.target.value)
   }
-  const handleSubmit = (e) => {
-    e.preventDefault(0);
-    //gets all data selected
+  const asteroidCount = () =>{
     const nearEarth = asteroidData.near_earth_objects;
-    let asteroids = [];
-    //gets individual asteroid data from each date
+    const asteroids = [];
+
     for(const date in nearEarth){
       for( let i=0 ; i<nearEarth[date].length;i++){
         asteroids.push(nearEarth[date][i])
+        console.log(i)
       }
     }
     // include only hazordous if selected 
     if(hazardous==="yes"){
       asteroids = asteroids.filter((asteroid) => asteroid.is_potentially_hazardous_asteroid ===true)
     }
+    return asteroids
+
+  }
+  const handleSubmit = (e) => {
+    e.preventDefault(0);
+    //gets all data selected
+    const asteroids = asteroidCount()
+    //gets individual asteroid data from each date
+    
     let astName5 =[];
     let astDia5 =[];
     const compare = e.target.metric.value;
     const noOfBars = asteroids.length >= 10 ? 10 : asteroids.length
-    console.log(noOfBars)
+    let IDArray = []
     switch (compare){
       case 'diameter':
         for(let i=0; i<noOfBars;i++){
           astDia5.push(asteroids[i].estimated_diameter.meters.estimated_diameter_max)
           astName5.push(asteroids[i].name)
-          console.log(astDia5)
+          IDArray.push(asteroids[i].links.self)
         }
         break;
       case 'speed' :
@@ -61,7 +72,9 @@ export default function Mars() {
           console.log(asteroids[i].close_approach_data)
           astDia5.push(asteroids[i].close_approach_data[0].relative_velocity.kilometers_per_hour)
           astName5.push(asteroids[i].name)
-          console.log(astDia5)
+          IDArray.push(asteroids[i].links.self)
+
+        
         }
         break;
       case 'miss':
@@ -70,9 +83,10 @@ export default function Mars() {
           console.log(asteroids[i].close_approach_data)
           astDia5.push(asteroids[i].close_approach_data[0].miss_distance.kilometers)
           astName5.push(asteroids[i].name)
-          console.log(astDia5)
+          IDArray.push(asteroids[i].links.self)
         }
     }
+    setNeoID(IDArray)
     // for(let i=0; i<5;i++){
     //   astDia5.push(asteroids[i][compareFilter][compareFilter1][compareFilter2])
     //   astName5.push(asteroids[i].name)
@@ -105,6 +119,20 @@ export default function Mars() {
   useEffect(() => {
     if (!asteroidData) {
       asteroidGet();
+    }else if(!noOfAsteroids){
+      //count asteroids
+      const nearEarth = asteroidData.near_earth_objects;
+       let count = 0
+      for(const date in nearEarth){
+        for( let i=0 ; i<nearEarth[date].length;i++){
+          count ++
+          
+        }
+      }
+      setNoOfAsteroids(count)
+      
+
+
     }
 
   },[]);
@@ -112,10 +140,12 @@ export default function Mars() {
     
     <>
     <Header/>
+    
     <div className='mars'>
+   
         <div className='mars__left'>
           <h1 className='mars__asteroid'><mark className="grey">Near Miss</mark> Asteroids</h1>
-          <p className='mars__number'>There were x astroids between date and date</p>
+         {asteroidData &&<p className='mars__number'>There were {asteroidData.element_count} astroids between date and date</p>}
           <form className='mars__form' onSubmit={handleSubmit}>
             <div className='mars__radio'>
               <label>
@@ -149,9 +179,10 @@ export default function Mars() {
 
           </form>
           {/* {chartData && console.log(chartData)} */}
-          {chartData && <BarChart chartRef={chartRef} chartData={chartData}/>}
+          {chartData && <BarChart chartRef={chartRef} chartData={chartData} onAsteroidClick={onAsteroidClick} neoID={neoID}/>}
           
         </div>
+
         <AnimationContainer/>
 
     </div>

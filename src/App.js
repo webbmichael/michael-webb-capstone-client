@@ -2,7 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import './App.scss';
 import Box from './Component/Box/Box';
-import Earth from "./Component/Earth"
+import EarthPage from './pages/Earth/Earth';
 import AnimatedSphere from './Component/Box/AnimatedSphere';
 import { OrbitControls } from '@react-three/drei';
 import AnimationContainer from './Component/AnimationContainer/AnimationContainer';
@@ -14,6 +14,10 @@ import Mars from './pages/Mars/Mars';
 
 
 function App() {
+  const onAsteroidClick = (link) => {
+    // console.log(array)
+    // console.log(index)
+  }
   return (
     <div className="App">
 
@@ -44,6 +48,11 @@ function App() {
         render={(renderProps) => <Home {...renderProps}/>}
       />
       <Route
+        path={"/earth"} 
+        exact
+        render={(renderProps) => <EarthPage {...renderProps}/>}
+      />
+      <Route
         path={"/asteroid"} 
       
         render={(renderProps) => <Asteroid {...renderProps}/>}
@@ -51,7 +60,7 @@ function App() {
       <Route
         path={"/mars"} 
 
-        render={(renderProps) => <Mars {...renderProps}/>}
+        render={(renderProps) => <Mars onAsteroidClick={onAsteroidClick} {...renderProps}/>}
       />
 
          

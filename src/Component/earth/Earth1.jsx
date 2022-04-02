@@ -24,8 +24,9 @@ export default function Earth1(props) {
     <>
     {/* <ambientLight intensity={1}/> */}
     <pointLight color={"#f6f3ea"} position ={[-50,0,0]} />
+    {/* <Box position={[-1.2, 0, 0]} /> */}
     <mesh ref = {cloudsRef}>
-      <sphereGeometry args={[2.5,32,32]} scale={100}/>
+      <sphereGeometry args={[2.5,32,32]} position={[-100,-100,0]} scale={100}/>
       <meshPhongMaterial 
         map={cloudsMap} 
         opacity ={0.4} 
@@ -35,7 +36,7 @@ export default function Earth1(props) {
         />
     </mesh>
     <mesh ref={earthRef}>
-        <sphereGeometry args = {[2.5, 32, 32]} scale={100}/>
+        <sphereGeometry args = {[2.5, 32, 32]} position={[-100,-100,0]} scale={100}/>
         <meshPhongMaterial color="red"/>
         <meshStandardMaterial map={colorMap} normalMap={normalMap}/>
         <OrbitControls 

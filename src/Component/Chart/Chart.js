@@ -21,7 +21,7 @@ Legend
 // import { Chart } from 'react-chartjs-2';
 // import { Chart as ChartJS, registerables } from 'chart.js';
 
-export default function BarChart({chartData}) {
+export default function BarChart({chartData, onAsteroidClick,neoID}) {
  
 //   console.log(chartRef.current)
 // console.log(useRef())
@@ -64,8 +64,9 @@ export default function BarChart({chartData}) {
     options= {chartOptions}
     onClick = {(event) =>{
       const element = getElementAtEvent(chartRef.current, event);
-      console.log(element)
-
+      const ind = element[0].index
+      console.log(neoID[ind])
+      onAsteroidClick(neoID[ind])
     }}
     // getDatasetAtEvent={dataset => console.log(dataset)}
 />

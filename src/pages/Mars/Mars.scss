@@ -3,6 +3,7 @@
 @use "../../styles/variables" as *;
 .mars {
   @include storyFlex;
+  margin-left: 2rem;
 
   &__left {
     @include left;

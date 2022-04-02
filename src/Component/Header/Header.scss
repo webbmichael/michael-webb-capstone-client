@@ -4,12 +4,21 @@
 
 .header {
   background-color: grey;
+
   @include flex(space-between, center, row);
-  height: 10vw;
+  // height: 5vw;
   &__title {
     @include medium;
     font-size: 2rem;
     font-weight: 800;
     color: black;
+  }
+  &__title,
+  &__link {
+    padding: 1rem 2rem;
+  }
+  &__link {
+    @include light;
+    font-size: 1.5rem;
   }
 }

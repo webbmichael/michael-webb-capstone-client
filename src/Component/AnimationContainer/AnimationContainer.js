@@ -1,5 +1,5 @@
 import React from 'react'
-import {Canvas} from '@react-three/fiber'
+import {Canvas, useFrame} from '@react-three/fiber'
 import {Suspense} from "react";
 import Earth1 from "../earth/Earth1.jsx"
 
@@ -10,8 +10,10 @@ const AnimationContainer = () => {
     <div className='canvasContainer'>
      
     <Canvas className='big'>
+      
       <Suspense fallback={null}>
         <Earth1 />
+
 
       </Suspense>
     </Canvas>
@@ -25,8 +27,10 @@ const AnimationContainerAsteroid = () => {
     <Canvas className='big'>
       <Suspense fallback={null}>
         <Earth1 />
+        
 
       </Suspense>
+     
     </Canvas>
     </div>
   )
