@@ -1,0 +1,15 @@
+@use "../../styles/mixins" as *;
+@use "../../styles/fonts" as *;
+@use "../../styles/variables" as *;
+
+.mars {
+  &__ePictures {
+    @include flex(space-between, center, row);
+    max-height: 50%;
+    max-width: 100%;
+  }
+  &__ePic {
+    max-width: 40%;
+    object-fit: cover;
+  }
+}

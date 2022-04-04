@@ -11,9 +11,17 @@ import { Redirect, Route, Switch } from "react-router-dom";
 import { Canvas } from '@react-three/fiber';
 import Asteroid from './pages/Asteroid/Asteroid';
 import Mars from './pages/Mars/Mars';
+import { useState } from 'react';
 
 
 function App() {
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
+   const handleChangeDates = (start,end) =>{
+    setStartDate(start);
+    setEndDate(end);
+    console.log("changed")
+  }
   const onAsteroidClick = (link) => {
     // console.log(array)
     // console.log(index)
@@ -50,12 +58,12 @@ function App() {
       <Route
         path={"/earth"} 
         exact
-        render={(renderProps) => <EarthPage {...renderProps}/>}
+        render={(renderProps) => <EarthPage dateChange={handleChangeDates} {...renderProps}/>}
       />
       <Route
         path={"/asteroid"} 
       
-        render={(renderProps) => <Asteroid {...renderProps}/>}
+        render={(renderProps) => <Asteroid  startDate={startDate} endDate={endDate} {...renderProps}/>}
       />
       <Route
         path={"/mars"} 

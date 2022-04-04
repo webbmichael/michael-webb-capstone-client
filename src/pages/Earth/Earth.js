@@ -6,14 +6,14 @@ import { GET_LOCATION,GET_SATELLITE } from '../../api/endpoints';
 import { type } from '@testing-library/user-event/dist/type';
 import Button from '../../Component/Button/Button';
 import axios from 'axios';
+import './Earth.scss';
  
-export default function EarthPage() {
+export default function EarthPage({dateChange}) {
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
   const [maxDate, setMaxDate] = useState(null);
-  const[postCode,setPostCode] = useState(null);
-  const [minDate, setMintDate] = useState(null);
-  const [coordinates,setCoordinates] = useState(null);
+  const [earthPictureFirst,setEarthPictureFirst] = useState(null);
+  const [earthPictureSecond,setEarthPictureSecond] = useState(null);
 
 
 
@@ -37,21 +37,27 @@ const handleSubmit = (e) =>{
     console.log("end", endDate)
     console.log("location" + e.target.locationInput.value)
     coordinatesGet(e.target.locationInput.value,startDate,endDate)
+    dateChange(startDate,endDate)
 }
 const coordinatesGet = async (postCode,start_date,end_date) =>{
     try{
         const response = await axios.get(GET_LOCATION(postCode));
-        satelliteGet(response.data.results[0].geometry,start_date)
+        satelliteGet(response.data.results[0].geometry,start_date,end_date)
         
 
     }catch(error){
         console.log(error)
     }
 }
-const satelliteGet = async (coord,start_date) => {
+const satelliteGet = async (coord,start_date,end_date) => {
     console.log(coord)
     const response2 = await axios.get(GET_SATELLITE(coord,start_date))
     console.log(response2.data.url)
+    setEarthPictureFirst(response2.data.url)
+    const response3 = await axios.get(GET_SATELLITE(coord,end_date))
+    console.log(response3.data.url)
+    setEarthPictureSecond(response3.data.url)
+
 }
 
   return (
@@ -75,6 +81,13 @@ const satelliteGet = async (coord,start_date) => {
             <Button text={"Submit"}/>
 
             </form>
+            {earthPictureFirst && earthPictureSecond &&
+            <div className='mars__ePictures'>
+                <img className="mars__ePic" src={earthPictureFirst}></img>
+                <img className="mars__ePic" src={earthPictureSecond}></img>
+                
+            </div>
+            }   
           
           
         </div>

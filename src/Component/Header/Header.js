@@ -9,7 +9,7 @@ export default function Header() {
         <Link to='/earth'>
           <p className='header__link'>Earth</p>
         </Link>
-        <Link to='/earth'>
+        <Link to='/asteroid'>
           <p className='header__link'>Asteroids</p>
         </Link>
         <Link to='/mars'>
