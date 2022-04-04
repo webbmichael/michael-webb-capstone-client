@@ -12,8 +12,11 @@ import { Canvas } from '@react-three/fiber';
 import Asteroid from './pages/Asteroid/Asteroid';
 import Mars from './pages/Mars/Mars';
 import { useState } from 'react';
-
-
+import Login from './pages/Login/Login';
+import { Routes } from 'react-router-dom';
+import Register from './pages/Register/Register';
+import Dashboard from './pages/Dashboard/Dashboard';
+import Reset from './pages/Reset/Reset';
 function App() {
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
@@ -50,6 +53,7 @@ function App() {
         </Canvas> */}
 
       <Switch>
+      
       <Route
         path={"/"} 
         exact
@@ -70,9 +74,30 @@ function App() {
 
         render={(renderProps) => <Mars onAsteroidClick={onAsteroidClick} {...renderProps}/>}
       />
+      <Route
+        path={"/login"} 
+
+        render={(renderProps) => <Login onAsteroidClick={onAsteroidClick} {...renderProps}/>}
+      />
+       <Route
+        path={"/register"} 
+
+        render={(renderProps) => <Register onAsteroidClick={onAsteroidClick} {...renderProps}/>}
+      />
+      <Route
+        path={"/dashboard"} 
+
+        render={(renderProps) => <Dashboard onAsteroidClick={onAsteroidClick} {...renderProps}/>}
+      />
+      <Route
+        path={"/reset"} 
+
+        render={(renderProps) => <Reset onAsteroidClick={onAsteroidClick} {...renderProps}/>}
+      />
 
          
-      </Switch> 
+      </Switch>
+      
       
 
         

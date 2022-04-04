@@ -5,6 +5,7 @@ import { GET_MARS } from '../../api/endpoints'
 import { useState } from 'react'
 import Button from '../../Component/Button/Button'
 import axios from 'axios'
+import rover from '../../assets/images/curiosity.jpg'
 export default function Asteroid({startDate, endDate}) {
 
   const [marsPictureFirst,setMarsPictureFirst] = useState(null);
@@ -38,15 +39,26 @@ const marsGet = async (date,camera)=>{
       <div className='mars__dropdown'>
               <label className='mars__selectDataFor'>Select a Camera</label>
               <select className='mars__selectBox' id="metric" name="metric">
-                <option className='mars__selectBox' value="FHAZ">FHAZ - Front Hazard Avoidance Camera</option>
-                <option className='mars__selectBox' value="speed">RHAZ - Rear Hazard Avoidance Camera</option>
-                <option className='mars__selectBox' value="miss">Miss Distance</option>
+                <option className='mars__selectBox' value="FHAZ">Front Hazard Avoidance Camera</option>
+                <option className='mars__selectBox' value="RHAZ">Rear Hazard Avoidance Camera</option>
+                <option className='mars__selectBox' value="MAST">Mast Camera</option>
+                <option className='mars__selectBox' value="CHEMCAM">Chemistry and Camera Complex</option>
+                <option className='mars__selectBox' value="MAHLI">Mars Hand Lens Imager</option>
+                <option className='mars__selectBox' value="MARDI">Mars Descent Imager</option>
+                <option className='mars__selectBox' value="NAVCAM">Navgation Camera</option>
               </select>
               <Button text="Select"/>
             </div>
 
       </form>
-      {marsPictureFirst && marsPictureSecond &&
+      <p className='mars__left'>Curiosity is a car-sized Mars rover designed to explore the Gale crater on Mars as part of NASA's Mars Science Laboratory mission. Curiosity was launched from Cape Canaveral on 26 November 2011, at 15:02:00 UTC and landed on Aeolis Palus inside Gale crater on Mars on 6 August 2012,</p>
+      <img className='mars__ePic' src={rover}></img>
+      
+
+      </div>
+   
+    {/* <AnimationContainer/> */}
+    {marsPictureFirst && marsPictureSecond &&
             <div className='mars__ePictures'>
               {console.log(marsPictureFirst)}
                 <img className="mars__ePic" src={marsPictureFirst}></img>
@@ -54,10 +66,6 @@ const marsGet = async (date,camera)=>{
                 
             </div>
             }   
-
-      </div>
-   
-    <AnimationContainer/>
 
     </div>
     </>
