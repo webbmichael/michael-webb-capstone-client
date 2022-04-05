@@ -1,0 +1,48 @@
+@use "../../styles/mixins" as *;
+@use "../../styles/fonts" as *;
+@use "../../styles/variables" as *;
+.asteroid {
+  @include storyFlex;
+  margin-left: 2rem;
+  &__left {
+    @include left;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+  &__asteroid {
+    @include light;
+    font-size: 3rem;
+    font-weight: bold;
+    color: white;
+    justify-content: flex-start;
+  }
+  &__selectDataFor {
+    @include light;
+    font-size: 1.5rem;
+  }
+  &__descriptionRow {
+    @include flex(space-between, center, row);
+    padding-top: 3rem;
+  }
+  &__description {
+    padding-right: 1.5rem;
+  }
+  &__roverPic {
+    border-radius: 2rem;
+  }
+  &__dropdown {
+    @include flex(space-between, flex-start, column);
+  }
+  &__dropdown > * {
+    margin-top: 1rem;
+  }
+  &__selectBox {
+    @include light;
+    font-size: 1.5rem;
+    height: 3rem;
+    background: black;
+    border: solid $second-white 0.125rem;
+    padding: 6px;
+    border-radius: 0.625rem;
+  }
+}

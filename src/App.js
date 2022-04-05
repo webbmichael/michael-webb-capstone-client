@@ -67,12 +67,12 @@ function App() {
       <Route
         path={"/asteroid"} 
       
-        render={(renderProps) => <Asteroid  startDate={startDate} endDate={endDate} {...renderProps}/>}
+        render={(renderProps) => <Mars  startDate={startDate} endDate={endDate} {...renderProps}/>}
       />
       <Route
         path={"/mars"} 
 
-        render={(renderProps) => <Mars onAsteroidClick={onAsteroidClick} {...renderProps}/>}
+        render={(renderProps) => <Asteroid onAsteroidClick={onAsteroidClick} {...renderProps}/>}
       />
       <Route
         path={"/login"} 

@@ -8,7 +8,8 @@ import { useState, useEffect ,useRef} from "react";
 import axios from 'axios';
 import Button from '../../Component/Button/Button';
 import BarChart from '../../Component/Chart/Chart';
-export default function Mars({onAsteroidClick}) {
+import BackButton from '../../Component/Back/BackButton';
+export default function Mars({onAsteroidClick,startDate,endDate}) {
   const [asteroidData, setAsteroidData] = useState(null);
   const [hazardous, setHazardous] = useState(null);
   const [chartData, setChartData] = useState(null);
@@ -20,7 +21,7 @@ export default function Mars({onAsteroidClick}) {
 
   const asteroidGet = async () => {
     try {
-      const response = await axios.get(GET_ASTEROID('2015-09-15','2015-09-18'));
+      const response = await axios.get(GET_ASTEROID(startDate,startDate));
       console.log(response.data)
       setAsteroidData(response.data)
     } catch(error){
@@ -144,6 +145,7 @@ export default function Mars({onAsteroidClick}) {
     <div className='mars'>
    
         <div className='mars__left'>
+          <BackButton/>
           <h1 className='mars__asteroid'><mark className="grey">Near Miss</mark> Asteroids</h1>
          {asteroidData &&<p className='mars__number'>There were {asteroidData.element_count} astroids between date and date</p>}
           <form className='mars__form' onSubmit={handleSubmit}>

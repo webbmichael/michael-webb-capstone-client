@@ -6,7 +6,7 @@ import {
   registerWithEmailAndPassword,
   signInWithGoogle,
 } from '../../firebase/Firebase.js';
-
+import './Register.scss'
 
 function Register() {
   const [email, setEmail] = useState('');

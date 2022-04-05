@@ -1,5 +1,8 @@
+@use "./styles/mixins" as *;
+@use "./styles/fonts" as *;
+@use "./styles/variables" as *;
 body {
-  background-color: black;
+  background: url("./assets/images/start.jpg");
 }
 .canvasContainer {
   width: 40%;
@@ -41,4 +44,8 @@ mark.white {
 }
 .mars__left {
   width: 60%;
+}
+a {
+  text-decoration: none;
+  @include light;
 }

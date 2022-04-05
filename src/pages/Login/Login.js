@@ -19,6 +19,9 @@ export default function Login()  {
       if (user) navigate.replace("/dashboard");
     }, [user, loading]);
     return (
+      <>
+          <Header/>
+
       <div className="login">
         <div className="login__container">
           <input
@@ -52,5 +55,6 @@ export default function Login()  {
           </div>
         </div>
       </div>
+      </>
     );
   }

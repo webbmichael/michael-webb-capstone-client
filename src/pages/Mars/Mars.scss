@@ -35,6 +35,11 @@
     padding: 6px;
     border-radius: 0.625rem;
   }
+  &__buttonContainer{
+    margin-top: 2rem;
+    width: 80%;
+    @include flex(space-between,center,row)
+  }
 }
 select option {
   background-color: none;

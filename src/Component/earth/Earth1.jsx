@@ -46,6 +46,7 @@ export default function Earth1(props) {
           zoomSpeed ={0.6}
           panSpeed={0.5}
           rotateSpeed={0.5}
+          zoom={0.1}
           />
     </mesh>
     
