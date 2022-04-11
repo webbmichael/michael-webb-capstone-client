@@ -2,11 +2,12 @@
 @use "./styles/fonts" as *;
 @use "./styles/variables" as *;
 body {
-  background: url("./assets/images/start.jpg");
+  // background: url("./assets/images/start.jpg");
+  background: black;
 }
 .canvasContainer {
   width: 40%;
-  height: 100%;
+  height: calc(100% - 149.714px);
   max-height: 95vh;
   position: relative;
   // left: 20%;

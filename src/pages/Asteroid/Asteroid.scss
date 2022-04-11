@@ -28,7 +28,8 @@
     padding-right: 1.5rem;
   }
   &__roverPic {
-    border-radius: 2rem;
+    // border-radius: 2rem;
+    margin-right: 1rem;
   }
   &__dropdown {
     @include flex(space-between, flex-start, column);
@@ -44,5 +45,15 @@
     border: solid $second-white 0.125rem;
     padding: 6px;
     border-radius: 0.625rem;
+  }
+  &__ePictures{
+    width: 40%;
+    @include flex(center,center,column)
+  }
+  &__ePic{
+    width: 90%;
+  }
+  &__description{
+    @include light;
   }
 }

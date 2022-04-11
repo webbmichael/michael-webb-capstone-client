@@ -20,3 +20,6 @@ export const GET_LOCATION = (postcode) =>{
 export const GET_MARS = (date,camera) => {
     return `${API_LINK}mars-photos/api/v1/rovers/curiosity/photos?earth_date=${date}&api_key=${KEY}&camera=${camera}`
 }
+export const GET_ASTEROID_SINGLE=(id)=>{
+    return `${API_LINK}neo/rest/v1/neo/${id}?api_key=${KEY}`
+}

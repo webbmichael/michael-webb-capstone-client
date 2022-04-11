@@ -7,7 +7,7 @@ export default function Home(history) {
 
   const buttonClick = () =>{
     console.log(history)
-    history.history.push('/mars')
+    history.history.push('/earth')
   }
   return (
     <div className='home'>
@@ -21,3 +21,9 @@ export default function Home(history) {
     </div>
   )
 }
+//to do 
+// style asteroids
+// images replace 3d object
+// save button and back button - saves images to session storage
+// asteroids details page
+//dashboard

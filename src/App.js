@@ -17,6 +17,7 @@ import { Routes } from 'react-router-dom';
 import Register from './pages/Register/Register';
 import Dashboard from './pages/Dashboard/Dashboard';
 import Reset from './pages/Reset/Reset';
+import AsteroidDetails from './pages/AsteroidDetails/AsteroidDetails';
 function App() {
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
@@ -65,9 +66,14 @@ function App() {
         render={(renderProps) => <EarthPage dateChange={handleChangeDates} {...renderProps}/>}
       />
       <Route
-        path={"/asteroid"} 
+        path={"/asteroid"} exact
       
         render={(renderProps) => <Mars  startDate={startDate} endDate={endDate} {...renderProps}/>}
+      />
+            <Route
+        path={"/asteroid/:id"} 
+      
+        render={(renderProps) => <AsteroidDetails  startDate={startDate} endDate={endDate} {...renderProps}/>}
       />
       <Route
         path={"/mars"} 

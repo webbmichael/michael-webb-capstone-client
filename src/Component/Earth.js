@@ -8,15 +8,21 @@ title: Earth
 
 import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
+import { useFrame } from '@react-three/fiber'
 
 export default function Earth({ ...props }) {
   const group = useRef()
   const { nodes, materials } = useGLTF('/earth.gltf')
+  useFrame(({clock}) =>{
+    const elapsedTime = clock.getElapsedTime();
+
+    group.current.rotation.y = elapsedTime/6;
+  })
   return (
     <group ref={group} {...props} dispose={null}>
       <group rotation={[-Math.PI / 2, 0, 0]}>
         <group rotation={[Math.PI / 2, 0, 0]}>
-          <group scale={3}>
+          <group scale={9}>
             <group rotation={[-0.53, 1.13, 0.12]}>
               <mesh geometry={nodes.Object_4.geometry} material={materials.Earth_Diffuse_6K} />
             </group>

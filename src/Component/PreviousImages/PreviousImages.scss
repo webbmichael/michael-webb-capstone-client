@@ -1,0 +1,22 @@
+@use "../../styles/mixins" as *;
+@use "../../styles/fonts" as *;
+@use "../../styles/variables" as *;
+
+.previous{
+
+    margin:0 2rem;
+    background: none;
+    max-width: 90%;
+    @include flex(space-evenly,center,row);
+    &__old{
+        border-radius: 20%;
+
+
+       max-height:20rem;
+    }
+    &__text{
+        @include medium;
+        font-size: 3rem;
+        color: white;
+    }
+}

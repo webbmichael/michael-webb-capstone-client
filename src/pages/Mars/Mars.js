@@ -1,33 +1,42 @@
 import React from 'react'
 import { AnimationContainer } from '../../Component/AnimationContainer/AnimationContainer';
+import { AnimationContainerAsteroid } from '../../Component/AnimationContainer/AnimationContainer';
 import Header from '../../Component/Header/Header';
 import './Mars.scss';
 import {GET_ASTEROID} from '../../api/endpoints';
 import { findAllByDisplayValue } from '@testing-library/react';
 import { useState, useEffect ,useRef} from "react";
 import axios from 'axios';
-import Button from '../../Component/Button/Button';
+import Button, { ButtonNext } from '../../Component/Button/Button';
 import BarChart from '../../Component/Chart/Chart';
 import BackButton from '../../Component/Back/BackButton';
-export default function Mars({onAsteroidClick,startDate,endDate}) {
+import { useHistory } from 'react-router-dom';
+
+export default function Mars({onAsteroidClick,endDate}) {
   const [asteroidData, setAsteroidData] = useState(null);
   const [hazardous, setHazardous] = useState(null);
   const [chartData, setChartData] = useState(null);
   const [noOfAsteroids, setNoOfAsteroids] = useState(null);
+  const [chartTitle,setChartTitle]=useState("")
   const[neoID,setNeoID]= useState(null);
   const chartRef = useRef();
 
- 
+  const navigate=useHistory()
 
   const asteroidGet = async () => {
     try {
-      const response = await axios.get(GET_ASTEROID(startDate,startDate));
+      const response = await axios.get(GET_ASTEROID(sessionStorage.getItem('startDate'),sessionStorage.getItem('startDate')));
       console.log(response.data)
       setAsteroidData(response.data)
     } catch(error){
       console.log(error)
     }
   }
+  const startDate = sessionStorage.getItem('startDate')
+  const clickNext = () => {
+    navigate.replace('/mars')
+  }
+
   const onValueChange= (e)=>{
     console.log(e.target.value)
     setHazardous(e.target.value)
@@ -65,7 +74,9 @@ export default function Mars({onAsteroidClick,startDate,endDate}) {
         for(let i=0; i<noOfBars;i++){
           astDia5.push(asteroids[i].estimated_diameter.meters.estimated_diameter_max)
           astName5.push(asteroids[i].name)
-          IDArray.push(asteroids[i].links.self)
+          IDArray.push(asteroids[i].id)
+          setChartTitle("Asteroids with the top 10 diameters in Meters")
+          
         }
         break;
       case 'speed' :
@@ -73,9 +84,8 @@ export default function Mars({onAsteroidClick,startDate,endDate}) {
           console.log(asteroids[i].close_approach_data)
           astDia5.push(asteroids[i].close_approach_data[0].relative_velocity.kilometers_per_hour)
           astName5.push(asteroids[i].name)
-          IDArray.push(asteroids[i].links.self)
-
-        
+          IDArray.push(asteroids[i].id)
+          setChartTitle("Asteroids with the top 10 speeds in Kilometers per hour")
         }
         break;
       case 'miss':
@@ -84,7 +94,8 @@ export default function Mars({onAsteroidClick,startDate,endDate}) {
           console.log(asteroids[i].close_approach_data)
           astDia5.push(asteroids[i].close_approach_data[0].miss_distance.kilometers)
           astName5.push(asteroids[i].name)
-          IDArray.push(asteroids[i].links.self)
+          IDArray.push(asteroids[i].id)
+          setChartTitle("Asteroids with the top 10 close miss distances in Kilometers")
         }
     }
     setNeoID(IDArray)
@@ -101,6 +112,8 @@ export default function Mars({onAsteroidClick,startDate,endDate}) {
         {
           label: "Diameter",
           data: astDia5,
+          scaleFontColor: "#FFFFFF",
+                pointLabelFontColor : "#FFFFFF",
           backgroundColor: ["white",
           ],
           borderColor: [
@@ -147,9 +160,9 @@ export default function Mars({onAsteroidClick,startDate,endDate}) {
         <div className='mars__left'>
           <BackButton/>
           <h1 className='mars__asteroid'><mark className="grey">Near Miss</mark> Asteroids</h1>
-         {asteroidData &&<p className='mars__number'>There were {asteroidData.element_count} astroids between date and date</p>}
+         {asteroidData &&<p className='mars__number'>There were {asteroidData.element_count} astroids recorded in the 10 days after {startDate}</p>}
           <form className='mars__form' onSubmit={handleSubmit}>
-            <div className='mars__radio'>
+            {/* <div className='mars__radio'>
               <label>
                 <input
                   type="radio"
@@ -168,7 +181,7 @@ export default function Mars({onAsteroidClick,startDate,endDate}) {
                 />
               No
               </label>
-            </div>
+            </div> */}
             <div className='mars__dropdown'>
               <label className='mars__selectDataFor'>Compare Asteroids with top five</label>
               <select className='mars__selectBox' id="metric" name="metric">
@@ -181,11 +194,16 @@ export default function Mars({onAsteroidClick,startDate,endDate}) {
 
           </form>
           {/* {chartData && console.log(chartData)} */}
-          {chartData && <BarChart chartRef={chartRef} chartData={chartData} onAsteroidClick={onAsteroidClick} neoID={neoID}/>}
-          
+          {chartData &&
+          <>
+            <h3 className='mars__chartTitle'>{chartTitle}</h3>
+            <BarChart chartRef={chartRef} chartData={chartData} onAsteroidClick={onAsteroidClick} neoID={neoID}/>
+            <ButtonNext text={'Next'} click={clickNext}/>
+          </>
+          }
         </div>
 
-        <AnimationContainer/>
+        <AnimationContainerAsteroid/>
 
     </div>
     </>

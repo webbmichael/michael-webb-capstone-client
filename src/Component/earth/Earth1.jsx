@@ -12,7 +12,7 @@ export default function Earth1(props) {
   const [colorMap, normalMap, specularMap, cloudsMap] = useLoader (TextureLoader,[EarthDayMap, EarthNormalMap, EarthSpecularMap,EarthCloudsMap] )
   const earthRef = useRef();
   const cloudsRef = useRef();
-
+// console.log(clock);
   useFrame(({clock}) =>{
     const elapsedTime = clock.getElapsedTime();
     earthRef.current.rotation.y = elapsedTime/6;
@@ -23,7 +23,6 @@ export default function Earth1(props) {
   return (
     <>
     {/* <ambientLight intensity={1}/> */}
-    <pointLight color={"#f6f3ea"} position ={[-50,0,0]} />
     {/* <Box position={[-1.2, 0, 0]} /> */}
     <mesh ref = {cloudsRef}>
       <sphereGeometry args={[2.5,32,32]} position={[-100,-100,0]} scale={100}/>
@@ -48,6 +47,7 @@ export default function Earth1(props) {
           rotateSpeed={0.5}
           zoom={0.1}
           />
+       
     </mesh>
     
     </>

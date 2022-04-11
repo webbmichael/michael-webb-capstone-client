@@ -4,6 +4,7 @@ import './Login.scss';
 import { Link,useHistory } from "react-router-dom";
 import { auth, logInWithEmailAndPassword, signInWithGoogle } from "../../firebase/Firebase.js";
 import { useAuthState } from "react-firebase-hooks/auth";
+import Button from "../../Component/Button/Button";
 
 
 export default function Login()  {
@@ -24,33 +25,31 @@ export default function Login()  {
 
       <div className="login">
         <div className="login__container">
+        <h1 className="login__title">Login to store your images</h1>
+
           <input
             type="text"
-            className="login__textBox"
+            className="earth__input login__input"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="E-mail Address"
           />
           <input
             type="password"
-            className="login__textBox"
+            className="earth__input login__input"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Password"
           />
-          <button
-            className="login__btn"
-            onClick={() => logInWithEmailAndPassword(email, password)}
-          >
-            Login
-          </button>
-          <button className="login__btn login__google" onClick={signInWithGoogle}>
-            Login with Google
-          </button>
+          
+          <Button click={logInWithEmailAndPassword} text={"Login with Email"} />
+          <div className="login__oneRemHeight"></div>
+       
+          <Button text={"Login with Google"} click={signInWithGoogle} />
           <div>
             <Link to="/reset">Forgot Password</Link>
           </div>
-          <div>
+          <div className="mars__description">
             Don't have an account? <Link to="/register">Register</Link> now.
           </div>
         </div>

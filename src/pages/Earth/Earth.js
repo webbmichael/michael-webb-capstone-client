@@ -4,7 +4,7 @@ import Header from '../../Component/Header/Header'
 import { useState, useEffect ,useRef} from "react";
 import { GET_LOCATION,GET_SATELLITE } from '../../api/endpoints';
 import { type } from '@testing-library/user-event/dist/type';
-import Button from '../../Component/Button/Button';
+import Button, { ButtonNext } from '../../Component/Button/Button';
 import axios from 'axios';
 import './Earth.scss';
 import BackButton from '../../Component/Back/BackButton';
@@ -45,6 +45,8 @@ const handleSubmit = (e) =>{
     console.log("location" + e.target.locationInput.value)
     coordinatesGet(e.target.locationInput.value,startDate,endDate)
     dateChange(startDate,endDate)
+    sessionStorage.setItem('startDate',startDate)
+
 }
 const coordinatesGet = async (postCode,start_date,end_date) =>{
     try{
@@ -95,7 +97,7 @@ const satelliteGet = async (coord,start_date,end_date) => {
             
             <div className='mars__buttonContainer'>
                 <Button text={"Save Image"} click={saveImage}/>
-                <Button text={"Next"} click={nextPage}/>
+                <ButtonNext text={"Next"} click={nextPage}/>
             </div>
 }
             {earthPictureFirst && earthPictureSecond &&
@@ -112,7 +114,7 @@ const satelliteGet = async (coord,start_date,end_date) => {
         {earthPictureFirst &&
         <div className='mars__results'>
         <img className="mars__ePic" src={earthPictureFirst}></img>
-        <p className='mars__imageLabel'>Satellite image taken on </p>
+        
         </div>
                     }
 

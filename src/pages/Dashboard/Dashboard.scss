@@ -1,15 +1,22 @@
+@use "../../styles/mixins" as *;
+@use "../../styles/fonts" as *;
+@use "../../styles/variables" as *;
+
+
 .dashboard {
   height: 100vh;
-  width: 100vw;
+
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 0 2rem;
+  
 }
 .dashboard__container {
   display: flex;
   flex-direction: column;
   text-align: center;
-  background-color: #dcdcdc;
+  background:none;
   padding: 30px;
 }
 .dashboard__btn {
@@ -22,4 +29,18 @@
 }
 .dashboard div {
   margin-top: 7px;
+}
+.dashboard__deets{
+  @include light;
+}
+.dashboard__title{
+  @include medium;
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+}
+.dashboard__right{
+  margin-right:1rem;
+}
+.dashboard__cImage{
+  border-radius: 20%;
 }
