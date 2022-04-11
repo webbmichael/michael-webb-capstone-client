@@ -83,9 +83,9 @@ const satelliteGet = async (coord,start_date,end_date) => {
         
 
             <form className='mars__form earth__form'onSubmit={handleSubmit} >
-                <label className='mars__number'>Select a date to view Earth back in time</label>
+                <label className='mars__number'>Select a date from 2013 - present to view Earth back in time</label>
                 <div className='earth__dateRow'>
-                    <input className='earth__input' onChange={handleChange} type="date" id="start" name="startDate"   max="2018-12-31" />
+                    <input className='earth__input' onChange={handleChange} type="date" id="start" name="startDate"   min="2012-01-01" />
                     {/* {maxDate && <input className='earth__input' onChange={handleChangeEnd} type="date" id="end" name="endDate"  min="2018-01-01" max={maxDate} />} */}
                 </div>
                 <label className='mars__number'>Type Earth location (Postcode or city)</label>
