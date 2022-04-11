@@ -1,0 +1,18 @@
+@use "../../styles/mixins" as *;
+@use "../../styles/fonts" as *;
+.home {
+  @include wrapper-tablet;
+  display: flex;
+  flex-direction: row;
+  &__leftCenter {
+    width: 100%;
+  }
+  &__left {
+    width: 60%;
+    @include flex(center, center, column);
+  }
+  &__title {
+    color: white;
+    @include medium;
+  }
+}

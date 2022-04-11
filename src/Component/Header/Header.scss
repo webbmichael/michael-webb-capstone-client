@@ -1,0 +1,33 @@
+@use "../../styles/mixins" as *;
+@use "../../styles/fonts" as *;
+@use "../../styles/variables" as *;
+
+.header {
+  background: none;
+  border-radius: 10%;
+  margin:1rem;
+  
+  @include flex(space-between, center, row);
+  // height: 5vw;
+  &__title {
+    @include medium;
+    font-size: 2rem;
+    font-weight: 800;
+    color: white;
+  }
+  &__title,
+  &__link {
+    padding: 1rem 2rem;
+  }
+  &__link {
+    @include light;
+    font-size: 1.5rem;
+  }
+  &__pages{
+    @include flex(space-between,center,row)
+  }
+}
+.space{
+  color: grey;
+  background: none;
+}

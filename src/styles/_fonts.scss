@@ -1,0 +1,23 @@
+@font-face {
+  font-family: "lexend-light";
+  src: url(../assets/fonts/D-DIN.otf);
+}
+@font-face {
+  font-family: "lexend-medium";
+  src: url(../assets/fonts/D-DIN-Bold.otf);
+}
+$medium: "lexend-medium";
+$light: "lexend-light";
+
+@mixin medium {
+  font-family: $medium;
+  font-size: 4.5rem;
+  font-weight: 500;
+}
+
+@mixin light {
+  font-family: $light;
+
+  font-size: 2rem;
+  font-weight: 300;
+}

@@ -1,0 +1,56 @@
+@use "../../styles/mixins" as *;
+@use "../../styles/fonts" as *;
+@use "../../styles/variables" as *;
+.mars {
+  @include storyFlex;
+  margin-left: 2rem;
+
+  &__left {
+    @include left;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+  &__asteroid {
+    @include light;
+    font-size: 3rem;
+    font-weight: bold;
+    color: white;
+    justify-content: flex-start;
+    align-self: center
+  }
+  &__number {
+    @include light;
+    color: white;
+    font-size: 2rem;
+  }
+  &__selectDataFor {
+    @include light;
+    font-size: 1.5rem;
+    margin-right: 1rem;
+  }
+  &__selectBox {
+    @include light;
+    font-size: 1.5rem;
+    height: 3rem;
+    background: black;
+    border: solid $second-white 0.125rem;
+    padding: 6px;
+    // border-radius: 0.625rem;
+  }
+  &__buttonContainer{
+    margin-top: 2rem;
+    width: 80%;
+    @include flex(space-between,center,row)
+  }
+  &__chartTitle{
+    @include light;
+    font-size: 2rem;
+    padding-top: 1rem;
+  }
+  &__form{
+    @include flex(flex-start,flex-start, column)
+  }
+}
+select option {
+  background-color: none;
+}

@@ -2,6 +2,23 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Project Title
+
+Journey Through Space
+
+## About
+
+Displaying data from Nasa in an engaging way. The user will input a date from the previous 10 years and they will be shown images and data recorded by Nasa on that day.
+
+## Tecnologies used
+
+React.js
+SASS
+Node.js
+Axios
+Chart.js
+Three.js
+
 ## Available Scripts
 
 In the project directory, you can run:

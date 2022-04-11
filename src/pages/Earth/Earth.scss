@@ -1,0 +1,38 @@
+@use "../../styles/mixins" as *;
+@use "../../styles/fonts" as *;
+@use "../../styles/variables" as *;
+
+.mars {
+  &__ePictures {
+    @include flex(space-between, center, row);
+    // max-height: 50%;
+    max-width: 100%;
+  }
+  &__ePic {
+    max-width: 40%;
+    object-fit: cover;
+  }
+}
+.earth {
+  &__form {
+    @include flex(space-between, flex-start, column);
+  }
+  &__form > * {
+    margin-top: 1rem;
+  }
+  &__dateRow {
+    @include flex(flex-start, center, row);
+  }
+  &__dateRow > * {
+    margin-right: 2rem;
+  }
+  &__input {
+    @include light;
+    font-size: 1.5rem;
+    height: 3rem;
+    background: black;
+    border: solid $second-white 0.125rem;
+    padding: 6px;
+    // border-radius: 0.625rem;
+  }
+}

@@ -1,0 +1,52 @@
+@use "./styles/mixins" as *;
+@use "./styles/fonts" as *;
+@use "./styles/variables" as *;
+body {
+  // background: url("./assets/images/start.jpg");
+  background: black;
+}
+.canvasContainer {
+  width: 40%;
+  height: calc(100% - 149.714px);
+  max-height: 95vh;
+  position: relative;
+  // left: 20%;
+  overflow-x: hidden;
+}
+canvas {
+  // z-index: 1;
+  overflow-x: hidden;
+  width: 150%;
+  height: 95vh;
+
+  // transform: rotate(-20deg);
+}
+.hello {
+  background-color: red;
+  background: none;
+  display: flex;
+  width: 50%;
+}
+mark.grey {
+  background: none;
+  color: rgba(255, 255, 255, 0.67);
+}
+mark.white {
+  background: none;
+  color: rgba(black, 0.5);
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  list-style-type: none;
+  margin: 0;
+  color: white;
+}
+.mars__left {
+  width: 60%;
+}
+a {
+  text-decoration: none;
+  @include light;
+}

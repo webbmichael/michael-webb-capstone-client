@@ -1,0 +1,46 @@
+@use "../../styles/mixins" as *;
+@use "../../styles/fonts" as *;
+@use "../../styles/variables" as *;
+
+
+.button {
+  text-align: center;
+  //   width: 6.25rem;
+  height: 3.125rem;
+  @include light;
+  background: none;
+  color: white;
+  border: solid $second-white 0.125rem;
+  padding: 6px 36px;
+  // border-radius: 0.625rem;
+  &:hover {
+    cursor: pointer;
+  }
+}
+.buttonNext{
+  border: none;
+  height:8.3125rem;
+  width: 4.125rem;
+  margin-left:auto;
+  // display: flex;
+ 
+ 
+
+    position: relative;
+    &::after {
+      transition-duration: 0.3s;
+      display: inline-block;
+      position: absolute;
+      right:-4rem;
+      top: 2.75rem;
+      content: url("../.././assets/svg/chevron_right-24px.svg");
+    }
+ 
+  
+    &:hover {
+      &::after {
+        transform: translateX(0.5rem);
+      }
+    }
+  
+}
